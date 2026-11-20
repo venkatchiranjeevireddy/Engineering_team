@@ -2,6 +2,9 @@ design_task:
   description: >
     Take the high level requirements described here and prepare a detailed design for the engineer;
     everything should be in 1 python module, but outline the classes and methods in the module.
+    Define explicit invariants for nonnegative cash and share holdings, and specify validation before any state mutation.
+    Specify the account's cash, holdings, and transaction-history data structures, along with method inputs, outputs, and failure behavior.
+    Describe how current share prices are retrieved and how portfolio value and profit or loss are calculated consistently.
     Here are the requirements: {requirements}
     IMPORTANT: Only output the design in markdown format, laying out in detail the classes and functions in the module, describing the functionality.
   expected_output: >
