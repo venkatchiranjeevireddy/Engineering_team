@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-import sys
-import warnings
 import os
-from datetime import datetime
+import warnings
+
 from engineering_team.crew import EngineeringTeam
+
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 requirements = """
 A simple account management system for a trading simulation platform.
