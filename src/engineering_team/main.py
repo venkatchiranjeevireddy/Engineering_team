@@ -31,6 +31,8 @@ def run():
 
     # Create output only when running the crew, not when importing this module.
     os.makedirs("output", exist_ok=True)
+    if not os.path.isdir("output"):
+        raise NotADirectoryError("The output path exists but is not a directory")
 
     # Create and run the crew
     result = EngineeringTeam().crew().kickoff(inputs=inputs)
