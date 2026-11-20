@@ -37,7 +37,7 @@ $ crewai run
 
 This command initializes the engineering_team Crew, assembling the agents and assigning them tasks as defined in your configuration.
 
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
+The current configuration runs an engineering workflow for a trading-simulation account module. It writes the design to `output/accounts.py_design.md`, the backend implementation to `output/accounts.py`, the Gradio prototype to `output/app.py`, and the generated tests to `output/test_accounts.py`. Generated code and tests should be reviewed and executed before use.
 
 ## Understanding Your Crew
 
