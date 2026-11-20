@@ -12,6 +12,9 @@ design_task:
 code_task:
   description: >
     Write a python module that implements the design described by the engineering lead, in order to achieve the requirements.
+    Use Decimal or another exact decimal representation for cash and share prices; avoid binary floating-point arithmetic for financial balances.
+    Validate that deposit and withdrawal amounts, share quantities, and quoted prices are finite and positive.
+    Reject invalid or unaffordable transactions before mutating balances, holdings, or transaction history.
     Here are the requirements: {requirements}
   expected_output: >
     A python module that implements the design and achieves the requirements.
