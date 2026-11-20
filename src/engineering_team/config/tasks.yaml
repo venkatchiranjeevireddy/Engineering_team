@@ -40,6 +40,9 @@ frontend_task:
 test_task:
   description: >
     Write unit tests for the given backend module {module_name} and create a test_{module_name} in the same directory as the backend module.
+    Cover successful deposits, withdrawals, buys, sells, portfolio valuation, and transaction history.
+    Include failure cases for overdrafts, unaffordable purchases, and attempts to sell more shares than owned.
+    Check that rejected operations do not change account balances, holdings, or transaction history.
   expected_output: >
     A test_{module_name} module that tests the given backend module.
     IMPORTANT: Output ONLY the raw Python code without any markdown formatting, code block delimiters, or backticks.
