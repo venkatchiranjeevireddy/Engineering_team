@@ -30,7 +30,6 @@ def run():
     }
 
     # Create output only when running the crew, not when importing this module.
-    # Fail clearly if an existing file blocks the expected output directory.
     os.makedirs("output", exist_ok=True)
 
     # Create and run the crew
