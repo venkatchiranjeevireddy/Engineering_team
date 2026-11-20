@@ -5,9 +5,6 @@ import os
 from datetime import datetime
 from engineering_team.crew import EngineeringTeam
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
-# Create output directory if it doesn't exist
-os.makedirs('output', exist_ok=True)
-
 requirements = """
 A simple account management system for a trading simulation platform.
 The system should allow users to create an account, deposit funds, and withdraw funds.
@@ -31,6 +28,9 @@ def run():
         'module_name': module_name,
         'class_name': class_name
     }
+
+    # Create output only when running the crew, not when importing this module.
+    os.makedirs("output", exist_ok=True)
 
     # Create and run the crew
     result = EngineeringTeam().crew().kickoff(inputs=inputs)
