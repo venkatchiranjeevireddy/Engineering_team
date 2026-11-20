@@ -20,7 +20,7 @@ crewai install
 ```
 ### Customizing
 
-**Add your `OPENAI_API_KEY` into the `.env` file**
+**Configure a Gemini API key before running the crew.** The agents in `src/engineering_team/config/agents.yaml` currently use `gemini/gemini-1.5-flash`, so set `GEMINI_API_KEY` in your environment or `.env` file (and ensure your installed CrewAI/LiteLLM configuration loads it). An `OPENAI_API_KEY` alone does not authenticate the configured Gemini models. Never commit your `.env` file or API keys.
 
 - Modify `src/engineering_team/config/agents.yaml` to define your agents
 - Modify `src/engineering_team/config/tasks.yaml` to define your tasks
