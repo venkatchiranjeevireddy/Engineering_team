@@ -21,7 +21,7 @@ module_name = "accounts.py"
 class_name = "Account"
 def run():
     """
-    Run the research crew.
+    Run the engineering crew and return its kickoff result.
     """
     inputs = {
         'requirements': requirements,
@@ -34,6 +34,7 @@ def run():
 
     # Create and run the crew
     result = EngineeringTeam().crew().kickoff(inputs=inputs)
+    return result
 
 
 if __name__ == "__main__":
