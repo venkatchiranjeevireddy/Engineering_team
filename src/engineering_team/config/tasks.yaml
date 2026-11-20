@@ -53,6 +53,8 @@ test_task:
     Cover successful deposits, withdrawals, buys, sells, portfolio valuation, and transaction history.
     Include failure cases for overdrafts, unaffordable purchases, and attempts to sell more shares than owned.
     Check that rejected operations do not change account balances, holdings, or transaction history.
+    Test zero, negative, NaN, and infinite monetary inputs and share prices, and invalid share quantities.
+    Include repeated buy/sell sequences to verify holdings never become negative and cash reconciles with recorded transactions.
   expected_output: >
     A test_{module_name} module that tests the given backend module.
     IMPORTANT: Output ONLY the raw Python code without any markdown formatting, code block delimiters, or backticks.
