@@ -2,9 +2,9 @@
 import os
 import warnings
 
-from engineering_team.crew import EngineeringTeam
-
 warnings.filterwarnings("ignore", category=SyntaxWarning, module=r"^pysbd(?:\.|$)")
+
+from engineering_team.crew import EngineeringTeam
 requirements = """
 A simple account management system for a trading simulation platform.
 The system should allow users to create an account, deposit funds, and withdraw funds.
