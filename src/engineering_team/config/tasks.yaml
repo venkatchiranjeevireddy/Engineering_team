@@ -62,6 +62,8 @@ test_task:
     Verify failed lookups leave cash, holdings, and transaction history unchanged.
     Test the profit/loss calculation after both deposits and withdrawals, distinguishing net contributions from investment returns.
     Verify portfolio value equals available cash plus the market value of all holdings at the supplied prices.
+    Write pytest-discoverable test functions (test_*) using pytest fixtures and assertions.
+    Ensure the generated test file can be run from the output directory with `python -m pytest test_{module_name}` without requiring an API key or launching the crew.
   expected_output: >
     A test_{module_name} module that tests the given backend module.
     IMPORTANT: Output ONLY the raw Python code without any markdown formatting, code block delimiters, or backticks.
