@@ -1,0 +1,52 @@
+"""Unit tests for the crew entry point without network or Docker dependencies."""
+
+import importlib
+import sys
+import types
+from unittest.mock import MagicMock
+
+import pytest
+
+
+@pytest.fixture
+def entrypoint(monkeypatch):
+    fake_crew_module = types.ModuleType("engineering_team.crew")
+    fake_crew_module.EngineeringTeam = MagicMock()
+    monkeypatch.setitem(sys.modules, "engineering_team.crew", fake_crew_module)
+    monkeypatch.delitem(sys.modules, "engineering_team.main", raising=False)
+
+    module = importlib.import_module("engineering_team.main")
+    yield module, fake_crew_module.EngineeringTeam
+    monkeypatch.delitem(sys.modules, "engineering_team.main", raising=False)
+
+
+def test_run_creates_output_and_returns_kickoff_result(entrypoint, monkeypatch):
+    module, team = entrypoint
+    mkdir = MagicMock()
+    monkeypatch.setattr(module.os, "makedirs", mkdir)
+    monkeypatch.setattr(module.os.path, "isdir", lambda path: True)
+    expected = object()
+    team.return_value.crew.return_value.kickoff.return_value = expected
+
+    result = module.run()
+
+    assert result is expected
+    mkdir.assert_called_once_with("output", exist_ok=True)
+    team.return_value.crew.return_value.kickoff.assert_called_once_with(
+        inputs={
+            "requirements": module.requirements,
+            "module_name": "accounts.py",
+            "class_name": "Account",
+        }
+    )
+
+
+def test_run_rejects_non_directory_output_before_kickoff(entrypoint, monkeypatch):
+    module, team = entrypoint
+    monkeypatch.setattr(module.os, "makedirs", MagicMock())
+    monkeypatch.setattr(module.os.path, "isdir", lambda path: False)
+
+    with pytest.raises(NotADirectoryError, match="output path"):
+        module.run()
+
+    team.assert_not_called()
