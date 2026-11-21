@@ -56,6 +56,8 @@ test_task:
     Check that rejected operations do not change account balances, holdings, or transaction history.
     Test zero, negative, NaN, and infinite monetary inputs and share prices, and invalid share quantities.
     Include repeated buy/sell sequences to verify holdings never become negative and cash reconciles with recorded transactions.
+    Use deterministic, locally stubbed share prices so tests never depend on live market data or network access.
+    Keep each test independent with a fresh account fixture, and assert exact monetary values rather than approximate float comparisons.
   expected_output: >
     A test_{module_name} module that tests the given backend module.
     IMPORTANT: Output ONLY the raw Python code without any markdown formatting, code block delimiters, or backticks.
