@@ -27,6 +27,10 @@ crewai install
 - Modify `src/engineering_team/crew.py` to add your own logic, tools and specific args
 - Modify `src/engineering_team/main.py` to add custom inputs for your agents and tasks
 
+## Safe code execution prerequisite
+
+The backend and test agents in `src/engineering_team/crew.py` use CrewAI's `allow_code_execution=True` with `code_execution_mode="safe"`. **Install and start Docker before running the crew**, and confirm the Docker daemon is available with `docker info`. These agents execute generated Python code in a Docker-backed environment; without a working Docker daemon, code-execution steps can fail even when the Gemini API key is configured. Review generated code before running it outside the sandbox.
+
 ## Running the Project
 
 To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
