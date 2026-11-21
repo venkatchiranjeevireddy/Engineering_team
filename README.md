@@ -12,9 +12,20 @@ First, if you haven't already, install uv:
 pip install uv
 ```
 
-Next, navigate to your project directory and install the dependencies:
+Next, navigate to the project directory and install the project dependencies:
 
-(Optional) Lock the dependencies and install them by using the CLI command:
+```bash
+uv sync
+```
+
+Alternatively, install the project into an existing Python environment:
+
+```bash
+python -m pip install -e .
+```
+
+CrewAI's CLI can also manage installation if it is already available:
+
 ```bash
 crewai install
 ```
