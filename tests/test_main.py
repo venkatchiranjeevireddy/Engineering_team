@@ -50,3 +50,15 @@ def test_run_rejects_non_directory_output_before_kickoff(entrypoint, monkeypatch
         module.run()
 
     team.assert_not_called()
+
+
+def test_run_propagates_output_creation_failure_without_starting_crew(entrypoint, monkeypatch):
+    module, team = entrypoint
+    mkdir = MagicMock(side_effect=PermissionError("output directory is not writable"))
+    monkeypatch.setattr(module.os, "makedirs", mkdir)
+
+    with pytest.raises(PermissionError, match="not writable"):
+        module.run()
+
+    mkdir.assert_called_once_with("output", exist_ok=True)
+    team.assert_not_called()
