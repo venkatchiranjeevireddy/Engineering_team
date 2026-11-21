@@ -45,6 +45,7 @@ frontend_task:
     The output should be valid Python code that can be directly saved to a file and executed.
   agent: frontend_engineer
   context:
+    - design_task
     - code_task
   output_file: output/app.py
 
