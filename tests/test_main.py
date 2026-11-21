@@ -62,3 +62,16 @@ def test_run_propagates_output_creation_failure_without_starting_crew(entrypoint
 
     mkdir.assert_called_once_with("output", exist_ok=True)
     team.assert_not_called()
+
+
+def test_run_propagates_kickoff_failure(entrypoint, monkeypatch):
+    module, team = entrypoint
+    monkeypatch.setattr(module.os, "makedirs", MagicMock())
+    monkeypatch.setattr(module.os.path, "isdir", lambda path: True)
+    kickoff = team.return_value.crew.return_value.kickoff
+    kickoff.side_effect = RuntimeError("crew kickoff failed")
+
+    with pytest.raises(RuntimeError, match="crew kickoff failed"):
+        module.run()
+
+    kickoff.assert_called_once()
