@@ -60,6 +60,8 @@ test_task:
     Keep each test independent with a fresh account fixture, and assert exact monetary values rather than approximate float comparisons.
     Cover unsupported ticker symbols and share-price lookup failures, including exceptions from the price provider.
     Verify failed lookups leave cash, holdings, and transaction history unchanged.
+    Test the profit/loss calculation after both deposits and withdrawals, distinguishing net contributions from investment returns.
+    Verify portfolio value equals available cash plus the market value of all holdings at the supplied prices.
   expected_output: >
     A test_{module_name} module that tests the given backend module.
     IMPORTANT: Output ONLY the raw Python code without any markdown formatting, code block delimiters, or backticks.
