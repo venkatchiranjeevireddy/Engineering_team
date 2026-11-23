@@ -75,3 +75,19 @@ def test_run_propagates_kickoff_failure(entrypoint, monkeypatch):
         module.run()
 
     kickoff.assert_called_once()
+
+
+@pytest.mark.parametrize("preexisting_output", [False, True])
+def test_run_handles_real_output_directory(entrypoint, monkeypatch, tmp_path, preexisting_output):
+    module, team = entrypoint
+    monkeypatch.chdir(tmp_path)
+    output_dir = tmp_path / "output"
+    if preexisting_output:
+        output_dir.mkdir()
+
+    expected = object()
+    team.return_value.crew.return_value.kickoff.return_value = expected
+
+    assert module.run() is expected
+    assert output_dir.is_dir()
+    team.return_value.crew.return_value.kickoff.assert_called_once()
