@@ -54,6 +54,22 @@ This command initializes the engineering_team Crew, assembling the agents and as
 
 The current configuration runs an engineering workflow for a trading-simulation account module. It writes the design to `output/accounts.py_design.md`, the backend implementation to `output/accounts.py`, the Gradio prototype to `output/app.py`, and the generated tests to `output/test_accounts.py`. Generated code and tests should be reviewed and executed before use.
 
+## Running tests
+
+Run the repository's entry-point tests from the project root:
+
+```bash
+python -m pip install pytest
+python -m pytest tests/test_main.py
+```
+
+These tests mock the AI crew and do not require Gemini credentials or Docker. To test the generated account implementation separately, review the generated files first, then run:
+
+```bash
+cd output
+python -m pytest test_accounts.py
+```
+
 ## Understanding Your Crew
 
 The engineering_team Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
