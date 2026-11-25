@@ -91,3 +91,16 @@ def test_run_handles_real_output_directory(entrypoint, monkeypatch, tmp_path, pr
     assert module.run() is expected
     assert output_dir.is_dir()
     team.return_value.crew.return_value.kickoff.assert_called_once()
+
+
+def test_run_preserves_existing_file_at_output_path(entrypoint, monkeypatch, tmp_path):
+    module, team = entrypoint
+    monkeypatch.chdir(tmp_path)
+    output_file = tmp_path / "output"
+    output_file.write_text("existing data", encoding="utf-8")
+
+    with pytest.raises(FileExistsError):
+        module.run()
+
+    assert output_file.read_text(encoding="utf-8") == "existing data"
+    team.assert_not_called()
